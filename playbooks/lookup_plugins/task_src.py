@@ -30,9 +30,6 @@ NOTE: This means this filter relies on DebOps.
 
 import os
 
-from debops import *
-from debops.cmds import *
-
 __author__ = "Robert Chady <rchady@sitepen.com>"
 __copyright__ = "Copyright 2015 by Robert Chady <rchady@sitepen.com>"
 __license__ = "GNU General Public LIcense version 3 (GPL v3) or later"
@@ -59,17 +56,7 @@ class LookupModule(object):
                     if not isinstance(terms, list):
                         terms = [ terms ]
 
-                    project_root = find_debops_project(required=False)
-                    config = read_config(project_root)
                     places = []
-
-                    if 'paths' in config and conf_template_paths in config['paths']:
-                        custom_places = config['paths'][conf_template_paths].split(':')
-                        for custom_path in custom_places:
-                            if os.path.isabs(custom_path):
-                                places.append(custom_path)
-                            else:
-                                places.append(os.path.join(project_root, custom_path))
 
                     for term in terms:
                         if '_original_file' in inject:
@@ -100,17 +87,7 @@ class LookupModule(object):
                     if not isinstance(terms, list):
                         terms = [ terms ]
 
-                    project_root = find_debops_project(required=False)
-                    config = read_config(project_root)
                     places = []
-
-                    if 'paths' in config and conf_template_paths in config['paths']:
-                        custom_places = config['paths'][conf_template_paths].split(':')
-                        for custom_path in custom_places:
-                            if os.path.isabs(custom_path):
-                                places.append(custom_path)
-                            else:
-                                places.append(os.path.join(project_root, custom_path))
 
                     for term in terms:
                         if 'role_path' in variables:
