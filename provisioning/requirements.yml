@@ -15,4 +15,6 @@
 
 - src: debops.postgresql
 
+- src: debops.php5
+
 - src: debops.nginx
