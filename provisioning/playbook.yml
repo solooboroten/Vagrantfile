@@ -11,6 +11,9 @@
     - role: debops.apt_preferences
       tags: [ 'role::apt_preferences' ]
 
+    - role: etckeeper-commit
+      etckeeper_commit_message: 'Post debops.apt_preferences etckeeper commit'
+
     - role: debops.sshd
       tags: [ 'role::sshd' ]
       sshd__allow_groups: [ 'root', 'admins', 'sshusers', 'sftponly', 'vagrant' ]
