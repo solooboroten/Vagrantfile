@@ -8,3 +8,5 @@
 - src: https://github.com/debops/ansible-sshd.git
   name: debops.sshd
   version: 0b4aa2d01f0a5b046aa9b54c3b05c5143692f35b
+
+- src: debops.ferm

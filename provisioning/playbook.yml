@@ -1,6 +1,9 @@
 - hosts: all
   become: true
 
+  vars:
+    ferm_enabled: true
+
   roles:
     - role: etckeeper-commit
       etckeeper_commit_message: 'Pre debops.sshd etckeeper commit'
@@ -11,6 +14,11 @@
 
     - role: etckeeper-commit
       etckeeper_commit_message: 'Post debops.sshd etckeeper commit'
+
+    - role: debops.ferm
+      tags: [ 'role::ferm' ]
+      ferm_dependent_rules:
+        - '{{ sshd__ferm__dependent_rules }}'
 
   tasks:
     - name: Install /vagrant/git/etc directory
