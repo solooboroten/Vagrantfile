@@ -8,6 +8,9 @@
     - role: etckeeper-commit
       etckeeper_commit_message: 'Pre roles etckeeper commit'
 
+    - role: debops.core
+      tags: [ 'role::core' ]
+
     - role: debops.apt_preferences
       tags: [ 'role::apt_preferences' ]
 
