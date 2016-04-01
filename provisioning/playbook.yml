@@ -2,6 +2,8 @@
   become: true
 
   roles:
+    - role: etckeeper
+
     - role: debops.sshd
       tags: [ 'role::sshd' ]
       sshd__allow_groups: [ 'root', 'admins', 'sshusers', 'sftponly', 'vagrant' ]
