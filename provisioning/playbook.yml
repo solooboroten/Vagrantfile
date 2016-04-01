@@ -6,7 +6,7 @@
 
   roles:
     - role: etckeeper-commit
-      etckeeper_commit_message: 'Pre debops.sshd etckeeper commit'
+      etckeeper_commit_message: 'Pre roles etckeeper commit'
 
     - role: debops.sshd
       tags: [ 'role::sshd' ]
