@@ -26,3 +26,6 @@
     - role: debops.postgresql_server
       tags: [ 'role::postgresql_server' ]
       postgresql_server_upstream: true
+
+    - role: debops.postgresql
+      tags: [ 'role::postgresql' ]
