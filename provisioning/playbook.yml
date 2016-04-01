@@ -5,6 +5,9 @@
     ferm_enabled: true
 
   roles:
+    - role: debops.apt_preferences
+      tags: [ 'role::apt_preferences' ]
+
     - role: debops.sshd
       tags: [ 'role::sshd' ]
       sshd__allow_groups: [ 'root', 'admins', 'sshusers', 'sftponly', 'vagrant' ]
