@@ -2,8 +2,12 @@
   become: true
 
   roles:
-    - role: etckeeper
+    - role: etckeeper-commit
+      etckeeper_commit_message: 'Pre debops.sshd etckeeper commit'
 
     - role: debops.sshd
       tags: [ 'role::sshd' ]
       sshd__allow_groups: [ 'root', 'admins', 'sshusers', 'sftponly', 'vagrant' ]
+
+    - role: etckeeper-commit
+      etckeeper_commit_message: 'Post debops.sshd etckeeper commit'
