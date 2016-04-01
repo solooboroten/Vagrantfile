@@ -8,3 +8,5 @@
 - src: debops.ferm
 
 - src: debops.apt_preferences
+
+- src: debops.postgresql_server
