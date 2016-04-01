@@ -20,6 +20,9 @@
       ferm_dependent_rules:
         - '{{ sshd__ferm__dependent_rules }}'
 
+    - role: etckeeper-commit
+      etckeeper_commit_message: 'Post debops.ferm etckeeper commit'
+
   tasks:
     - name: Install /vagrant/git/etc directory
       tags: etckeeper
