@@ -11,3 +11,29 @@
 
     - role: etckeeper-commit
       etckeeper_commit_message: 'Post debops.sshd etckeeper commit'
+
+  tasks:
+    - name: Install /vagrant/git/etc directory
+      tags: etckeeper
+      become: true
+      file:
+        state: directory
+        dest: '/vagrant/git/etc'
+      when: etckeeper_enabled | bool
+
+    - name: Init git /vagrant/git/etc
+      become: true
+      command: git init
+      args:
+        chdir: '/vagrant/git/etc'
+        creates: '/vagrant/git/etc/.git'
+      ignore_errors: true
+      when: etckeeper_enabled | bool
+
+    - name: Git import from /etc to /vagrant/git/etc
+      become: true
+      shell: "git fetch /etc && git reset --hard FETCH_HEAD"
+      args:
+        chdir: '/vagrant/git/etc'
+      ignore_errors: true
+      when: etckeeper_enabled | bool
