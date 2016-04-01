@@ -2,7 +2,7 @@
   become: true
 
   vars:
-    ferm_enabled: false
+    ferm_enabled: true
 
   roles:
     - role: debops.sshd
