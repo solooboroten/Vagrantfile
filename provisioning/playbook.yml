@@ -57,6 +57,9 @@
     - role: debops.php5
       tags: [ 'role::php5' ]
 
+    - role: etckeeper-commit
+      etckeeper_commit_message: 'Post debops.php5 etckeeper commit'
+
     - role: debops.nginx
       tags: [ 'role::nginx' ]
 
