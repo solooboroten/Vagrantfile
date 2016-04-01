@@ -3,6 +3,7 @@
 
   vars:
     ferm_enabled: true
+    nginx_flavor: 'nginx.org'
 
   roles:
     - role: debops.core
@@ -11,6 +12,7 @@
     - role: debops.apt_preferences
       tags: [ 'role::apt_preferences' ]
       apt_preferences_dependent_list:
+        - '{{ nginx_apt_preferences_dependent_list }}'
         - '{{ postgresql_server_apt_preferences_dependent_list }}'
 
     - role: debops.sshd
@@ -21,6 +23,7 @@
       tags: [ 'role::ferm' ]
       ferm_dependent_rules:
         - '{{ sshd__ferm__dependent_rules }}'
+        - '{{ nginx_ferm_dependent_rules }}'
         - '{{ postgresql_server_ferm_dependent_rules }}'
 
     - role: debops.postgresql_server
@@ -29,3 +32,6 @@
 
     - role: debops.postgresql
       tags: [ 'role::postgresql' ]
+
+    - role: debops.nginx
+      tags: [ 'role::nginx' ]

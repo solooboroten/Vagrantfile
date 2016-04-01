@@ -14,3 +14,5 @@
   version: d79fd108276c564cb98adf78d1d58b53a1afeb56
 
 - src: debops.postgresql
+
+- src: debops.nginx
