@@ -8,6 +8,9 @@
     - role: etckeeper-commit
       etckeeper_commit_message: 'Pre roles etckeeper commit'
 
+    - role: debops.apt_preferences
+      tags: [ 'role::apt_preferences' ]
+
     - role: debops.sshd
       tags: [ 'role::sshd' ]
       sshd__allow_groups: [ 'root', 'admins', 'sshusers', 'sftponly', 'vagrant' ]
