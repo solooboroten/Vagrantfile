@@ -1,7 +1,15 @@
 - hosts: all
   become: true
 
+  vars:
+    ferm_enabled: false
+
   roles:
     - role: debops.sshd
       tags: [ 'role::sshd' ]
       sshd__allow_groups: [ 'root', 'admins', 'sshusers', 'sftponly', 'vagrant' ]
+
+    - role: debops.ferm
+      tags: [ 'role::ferm' ]
+      ferm_dependent_rules:
+        - '{{ sshd__ferm__dependent_rules }}'
