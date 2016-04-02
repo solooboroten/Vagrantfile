@@ -4,6 +4,16 @@
   vars:
     ferm_enabled: true
     nginx_flavor: 'nginx.org'
+    nginx_server_welcome:
+      name: [ 'welcome' ]
+      enabled: false
+      delete: true
+
+    nginx_server_localhost:
+      name: [ 'localhost', '127.0.0.1', '[::1]' ]
+      enabled: false
+      delete: true
+
     nginx_ferm_dependent_rules:
     - type: 'accept'
       dport: '{{ owncloud_dport }}'
