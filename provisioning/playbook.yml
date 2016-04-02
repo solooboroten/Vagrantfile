@@ -3,6 +3,7 @@
 
   vars:
     ferm_enabled: true
+    nginx_flavor: 'nginx.org'
 
   roles:
     - role: etckeeper-commit
@@ -17,6 +18,7 @@
     - role: debops.apt_preferences
       tags: [ 'role::apt_preferences' ]
       apt_preferences_dependent_list:
+        - '{{ nginx_apt_preferences_dependent_list }}'
         - '{{ postgresql_server_apt_preferences_dependent_list }}'
 
     - role: etckeeper-commit
@@ -33,6 +35,7 @@
       tags: [ 'role::ferm' ]
       ferm_dependent_rules:
         - '{{ sshd__ferm__dependent_rules }}'
+        - '{{ nginx_ferm_dependent_rules }}'
         - '{{ postgresql_server_ferm_dependent_rules }}'
 
     - role: etckeeper-commit
@@ -50,6 +53,9 @@
 
     - role: etckeeper-commit
       etckeeper_commit_message: 'Post debops.postgresql etckeeper commit'
+
+    - role: debops.nginx
+      tags: [ 'role::nginx' ]
 
   tasks:
     - name: Install /vagrant/git/etc directory
