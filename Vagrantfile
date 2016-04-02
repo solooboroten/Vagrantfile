@@ -80,6 +80,7 @@ Vagrant.configure(2) do |config|
       '--diff'
     ]
     ansible.groups = {
+      "debops_service_postgresql_server" => ["default"],
       "debops_service_sshd" => ["default"]
     }
   end

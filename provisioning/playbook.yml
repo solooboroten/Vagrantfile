@@ -16,6 +16,8 @@
 
     - role: debops.apt_preferences
       tags: [ 'role::apt_preferences' ]
+      apt_preferences_dependent_list:
+        - '{{ postgresql_server_apt_preferences_dependent_list }}'
 
     - role: etckeeper-commit
       etckeeper_commit_message: 'Post debops.apt_preferences etckeeper commit'
@@ -31,9 +33,14 @@
       tags: [ 'role::ferm' ]
       ferm_dependent_rules:
         - '{{ sshd__ferm__dependent_rules }}'
+        - '{{ postgresql_server_ferm_dependent_rules }}'
 
     - role: etckeeper-commit
       etckeeper_commit_message: 'Post debops.ferm etckeeper commit'
+
+    - role: debops.postgresql_server
+      tags: [ 'role::postgresql_server' ]
+      postgresql_server_upstream: true
 
   tasks:
     - name: Install /vagrant/git/etc directory
