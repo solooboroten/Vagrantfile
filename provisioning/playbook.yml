@@ -91,6 +91,9 @@
     - role: debops.owncloud
       tags: [ 'role::owncloud' ]
 
+    - role: etckeeper-commit
+      etckeeper_commit_message: 'Post debops.owncloud etckeeper commit'
+
   tasks:
     - name: Install /vagrant/git/etc directory
       tags: etckeeper
