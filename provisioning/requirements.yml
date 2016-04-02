@@ -24,3 +24,5 @@
 - src: debops.php5
 
 - src: debops.nginx
+
+- src: debops.owncloud
