@@ -4,9 +4,18 @@
   vars:
     ferm_enabled: true
     nginx_flavor: 'nginx.org'
+    nginx_ferm_dependent_rules:
+    - type: 'accept'
+      dport: '{{ owncloud_dport }}'
+      saddr: '{{ nginx_allow + nginx_group_allow + nginx_host_allow }}'
+      accept_any: True
+      weight: '40'
+      role: 'nginx'
+      name: 'http_https'
+
+    multiport: True
     owncloud_database: 'postgresql'
     owncloud_ldap_enable: false
-    owncloud_autosetup_url: 'http://localhost:8087/index.php'
     owncloud_base_packages:
     - 'owncloud'
 
