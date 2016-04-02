@@ -42,6 +42,9 @@
       tags: [ 'role::postgresql_server' ]
       postgresql_server_upstream: true
 
+    - role: etckeeper-commit
+      etckeeper_commit_message: 'Post debops.postgresql_server etckeeper commit'
+
   tasks:
     - name: Install /vagrant/git/etc directory
       tags: etckeeper
