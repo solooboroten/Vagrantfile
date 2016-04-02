@@ -4,6 +4,10 @@
   vars:
     ferm_enabled: true
     nginx_flavor: 'nginx.org'
+    owncloud_database: 'postgresql'
+    owncloud_ldap_enable: false
+    owncloud_base_packages:
+    - 'owncloud'
 
   roles:
     - role: etckeeper-commit
@@ -50,21 +54,42 @@
 
     - role: debops.postgresql
       tags: [ 'role::postgresql' ]
+      postgresql_roles:
+        - name: '{{ owncloud_database_name }}' # Separate role is needed when owncloud_database_name != owncloud_database_user
+        - name: '{{ owncloud_database_user }}' # Password is not passed directly - it will be read for the file
+      postgresql_groups:
+        - roles: [ '{{ owncloud_database_user }}' ]
+          groups: [ '{{ owncloud_database_name }}' ]
+          database: '{{ owncloud_database_name }}'
+          enabled: '{{ owncloud_database_name != owncloud_database_user }}'
+      postgresql_databases:
+        - name: '{{ owncloud_database_name }}'
+          owner: '{{ owncloud_database_user }}'
+      when: (owncloud_database == 'postgresql')
 
     - role: etckeeper-commit
       etckeeper_commit_message: 'Post debops.postgresql etckeeper commit'
 
     - role: debops.php5
       tags: [ 'role::php5' ]
+      php5_pools:
+        - '{{ owncloud_php5_pool }}'
 
     - role: etckeeper-commit
       etckeeper_commit_message: 'Post debops.php5 etckeeper commit'
 
     - role: debops.nginx
       tags: [ 'role::nginx' ]
+      nginx_servers:
+        - '{{ owncloud_nginx_server }}'
+      nginx_upstreams:
+        - '{{ owncloud_nginx_upstream_php5 }}'
 
     - role: etckeeper-commit
       etckeeper_commit_message: 'Post debops.nginx etckeeper commit'
+
+    - role: debops.owncloud
+      tags: [ 'role::owncloud' ]
 
   tasks:
     - name: Install /vagrant/git/etc directory

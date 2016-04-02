@@ -24,3 +24,7 @@
 - src: debops.php5
 
 - src: debops.nginx
+
+- src: https://github.com/solooboroten/ansible-owncloud.git
+  name: debops.owncloud
+  version: 22a872fa173aa0db89b9778d6a297aa56e67f1b0

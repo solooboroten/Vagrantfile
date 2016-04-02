@@ -81,8 +81,14 @@ Vagrant.configure(2) do |config|
     ]
     ansible.groups = {
       "debops_service_postgresql_server" => ["default"],
+      "debops_service_postgresql_server:vars" => {"postgresql_server_delegate_to" => "default"},
       "debops_service_postgresql" => ["default"],
+      "debops_service_postgresql:vars" => {"postgresql_delegate_to" => "default"},
       "debops_service_nginx" => ["default"],
+      "debops_service_owncloud" => ["default"],
+      "debops_service_owncloud:vars" => {
+        "owncloud_domain" => [ 'localhost', '127.0.0.1', '[::1]', "default"]
+      }
       "debops_service_sshd" => ["default"]
     }
   end
