@@ -23,7 +23,7 @@ Vagrant.configure(2) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 80, host: 8087
+  config.vm.network "forwarded_port", guest: 8087, host: 8087
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -86,8 +86,13 @@ Vagrant.configure(2) do |config|
       "debops_service_postgresql" => ["default"],
       "debops_service_postgresql:vars" => {"postgresql_delegate_to" => "default"},
       "debops_service_nginx" => ["default"],
+      "debops_service_nginx:vars" => {
+        "nginx_listen_port" => [ '[::]:8087' ]
+      },
       "debops_service_owncloud" => ["default"],
       "debops_service_owncloud:vars" => {
+        "owncloud_dport" => [ "8087" ],
+        "owncloud_autosetup_url" => 'http://localhost:8087/index.php',
         "owncloud_domain" => [ 'localhost', '127.0.0.1', '[::1]', "default"]
       },
       "debops_service_sshd" => ["default"]
