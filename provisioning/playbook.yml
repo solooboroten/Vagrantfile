@@ -54,6 +54,9 @@
     - role: etckeeper-commit
       etckeeper_commit_message: 'Post debops.postgresql etckeeper commit'
 
+    - role: debops.php5
+      tags: [ 'role::php5' ]
+
     - role: debops.nginx
       tags: [ 'role::nginx' ]
 
