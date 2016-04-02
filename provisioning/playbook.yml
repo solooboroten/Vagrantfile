@@ -6,6 +6,7 @@
     nginx_flavor: 'nginx.org'
     owncloud_database: 'postgresql'
     owncloud_ldap_enable: false
+    owncloud_autosetup_url: 'http://localhost:8087/index.php'
     owncloud_base_packages:
     - 'owncloud'
 
