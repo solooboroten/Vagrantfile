@@ -18,3 +18,5 @@
 - src: https://github.com/debops/ansible-postgresql_server.git
   name: debops.postgresql_server
   version: d79fd108276c564cb98adf78d1d58b53a1afeb56
+
+- src: debops.postgresql
