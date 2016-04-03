@@ -2,6 +2,7 @@
   become: true
 
   vars:
+    etckeeper_enabled: false
     ferm_enabled: true
     nginx_flavor: 'nginx.org'
     nginx_server_welcome:
