@@ -24,6 +24,7 @@
       name: 'http_https'
 
     multiport: True
+    owncloud_admin_username: 'admin-owncloud'
     owncloud_database: 'postgresql'
     owncloud_ldap_enable: false
     owncloud_base_packages:
