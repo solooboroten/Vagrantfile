@@ -77,9 +77,9 @@ Vagrant.configure(2) do |config|
     ansible.playbook = "provisioning/playbook.yml"
     ansible.galaxy_role_file = "provisioning/requirements.yml"
     ansible.verbose = true
-    ansible.raw_arguments = [
-      '--diff'
-    ]
+    #ansible.raw_arguments = [
+    #  '--diff'
+    #]
     ansible.groups = {
       "debops_service_postgresql_server" => ["default"],
       "debops_service_postgresql_server:vars" => {"postgresql_server_delegate_to" => "default"},
