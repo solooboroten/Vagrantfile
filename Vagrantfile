@@ -78,7 +78,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provisioning/playbook.yml"
     ansible.galaxy_role_file = "provisioning/requirements.yml"
-    #ansible.verbose = true
+    ansible.verbose = true
     #ansible.raw_arguments = [
     #  '--diff'
     #]
