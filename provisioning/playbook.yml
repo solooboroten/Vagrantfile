@@ -1,2 +1,13 @@
 - hosts: all
-  become: true
+
+  vars:
+  - loop_count: 2
+
+  tasks:
+  - debug: msg="loop_count={{ loop_count|int}}"
+
+  - debug: msg="loop ({{ item|int }}/{{ loop_count|int }})"
+    with_sequence: count={{ (loop_count|int if loop_count|int != 1 else 2) }}
+    when: loop_count is defined and item|int <= loop_count|int
+
+  - debug: msg="Post loop"
