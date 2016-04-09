@@ -11,3 +11,14 @@
     when: loop_count is defined and item|int <= loop_count|int
 
   - debug: msg="Post loop"
+
+  - name: Tests ya.ru
+    uri:
+      url: 'http://ya.ru'
+    register: ya_ru
+    set_fact:
+      ya_ru_status: "{{ ya_ru[0].status }}"
+    with_sequence: count={{ (loop_count|int if loop_count|int != 1 else 2) }}
+    when: loop_count is defined and item|int <= loop_count|int
+
+  - debug: msg={{ ya_ru_status }}
